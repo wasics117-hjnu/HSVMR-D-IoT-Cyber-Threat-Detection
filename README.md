@@ -1,4 +1,4 @@
-<h1 align="center">HSVMR-D: Hybrid Support Vector Machines Rule-Based Detection for IoT Cyber Threat Detection</h1>
+<h1 align="center">A Hybrid Support Vector Machines Rule-Based Detection for IoT Cyber Threat Detection</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white" alt="Python">
