@@ -55,7 +55,7 @@ A hybrid approach using support.pdf
 - **Majority-vote threat decision**: a sample is marked as a threat when at least two of the three HSVMR-D components vote for the threat class.
 - **Feature engineering**: augments original IoT attributes with row-wise mean, standard deviation, extrema, range, and energy.
 - **Resource-conscious design goal**: the published method is motivated by threat detection in heterogeneous and resource-constrained IoT environments.
-- **Multiple comparison methods**: the notebook includes SVM, Random Forest, MLP, Isolation Forest, statistical detection, and the proposed hybrid decision logic.
+- **Multiple comparison methods**: the notebook includes SVM, Random Forest, statistical detection, and the proposed hybrid decision logic.
 - **Experiment-oriented output**: the repository contains manuscript figures and notebook code for exporting comparison CSV files and regenerating plots.
 
 ---
@@ -106,7 +106,7 @@ Stratified train/test split
         +--------------------+--------------------+
         |                    |                    |
         v                    v                    v
- RBF SVM detector     Statistical detector    Rule-based detector
+ SVM detector     Statistical detector    Rule-based detector
   learned pattern       deviation signal       interpretable rules
         |                    |                    |
         +--------------------+--------------------+
@@ -124,7 +124,7 @@ Stratified train/test split
 
 <div align="justify">
 
-The central idea is that no single detector is expected to cover every type of IoT threat behavior. The SVM contributes supervised nonlinear classification, the statistical path contributes deviation-based anomaly information, and the rule engine contributes deterministic heuristic evidence. Their outputs are fused to obtain the final HSVMR-D prediction.
+The central idea is to optimize the IoT environment and accurately and timely detect cyber threats using a combination of machine learning, rule-based, and time-series approaches. 
 
 </div>
 
