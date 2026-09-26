@@ -21,7 +21,7 @@
 
 The rapid growth of the <strong>Internet of Things (IoT)</strong> has created highly heterogeneous networks containing sensors, embedded devices, gateways, controllers, and cyber-physical systems. These environments are difficult to secure because devices differ in capability, network behavior changes over time, computational resources are limited, and both known and previously unseen attack patterns may appear.
 
-<strong>HSVMR-D</strong> is a hybrid cyber-threat detection framework designed to combine complementary detection strategies instead of relying on a single classifier. The published work describes the approach as a <strong>Hybrid Support Vector Machines Rule-Based Detection</strong> method. In the accompanying notebook, the final decision combines an <strong>RBF Support Vector Machine (SVM)</strong>, a lightweight <strong>statistical deviation detector</strong>, and a <strong>rule-based detector</strong> through majority voting.
+<strong>HSVMR-D</strong> is a hybrid cyber-threat detection framework designed to combine complementary detection strategies instead of relying on a single classifier. The published work describes the approach as a <strong>Hybrid Support Vector Machines Rule-Based Detection</strong> method. In the accompanying notebook, the final decision combines an <strong>Support Vector Machine (SVM)</strong>, a lightweight <strong>statistical deviation detector</strong>, and a <strong>rule-based detector</strong> through majority voting.
 
 The repository also implements several comparison models, performs preprocessing and feature engineering, exports manuscript-style comparison tables, and produces figures for detection accuracy, detection speed, resource utilization, false-positive rate, transfer-learning efficiency, latency, and scalability.
 
@@ -49,7 +49,7 @@ A hybrid approach using support.pdf
 ## What Makes HSVMR-D Different
 
 - **Hybrid detection instead of a single classifier**: combines machine-learning, statistical, and rule-based decisions.
-- **RBF SVM for learned threat classification**: captures nonlinear relationships in engineered IoT features.
+- **SVM for learned threat classification**: captures nonlinear relationships in engineered IoT features.
 - **Statistical deviation analysis**: provides a lightweight anomaly-oriented signal in addition to supervised classification.
 - **Rule-based reasoning**: uses interpretable feature-distribution conditions to flag suspicious observations.
 - **Majority-vote threat decision**: a sample is marked as a threat when at least two of the three HSVMR-D components vote for the threat class.
@@ -225,9 +225,9 @@ Testing samples  : 200
 
 ## HSVMR-D Detection Components
 
-### Component A: RBF Support Vector Machine
+### Component A: Support Vector Machine
 
-The supervised component uses an RBF-kernel SVM:
+The supervised component uses an SVM with RBF-kernel :
 
 ```python
 IDA = SVC(
@@ -248,7 +248,7 @@ Conceptually:
 engineered IoT feature vector
             |
             v
-        RBF kernel
+        kernel
             |
             v
  nonlinear separating boundary
@@ -401,7 +401,7 @@ These features augment the raw measurements with simple distribution and magnitu
 
 ### 4) Learned classification layer
 
-The primary learned detector is an RBF SVM. The repository also implements additional machine-learning baselines for comparison.
+The primary learned detector is an  SVM. The repository also implements additional machine-learning baselines for comparison.
 
 ### 5) Statistical/anomaly layer
 
@@ -981,7 +981,7 @@ Paper concept                     Repository implementation
 -------------                     -------------------------
 IoT data preprocessing         -> duplicate/missing handling + RobustScaler
 Feature extraction             -> six row-wise engineered features
-SVM threat detection           -> RBF SVC
+SVM threat detection           ->  SVC
 Statistical analysis           -> deviation-based binary detectors
 Rule-based detection           -> three-condition score rule
 Hybrid threat decision         -> 2-of-3 majority vote
