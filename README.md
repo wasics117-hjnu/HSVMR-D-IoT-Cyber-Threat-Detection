@@ -21,7 +21,7 @@
 
 The rapid growth of the <strong>Internet of Things (IoT)</strong> has created highly heterogeneous networks containing sensors, embedded devices, gateways, controllers, and cyber-physical systems. These environments are difficult to secure because devices differ in capability, network behavior changes over time, computational resources are limited, and both known and previously unseen attack patterns may appear.
 
-<strong>HSVMR-D</strong> is a hybrid cyber-threat detection framework designed to combine complementary detection strategies instead of relying on a single classifier. The published work describes the approach as a <strong>Hybrid Support Vector Machines Rule-Based Detection</strong> method. In the accompanying notebook, the final decision combines an <strong>Support Vector Machine (SVM)</strong>, a lightweight <strong>statistical deviation detector</strong>, and a <strong>rule-based detector</strong> through majority voting.
+<strong>HSVMR-D</strong> is a hybrid cyber-threat detection framework designed to combine complementary detection strategies instead of relying on a single classifier. The published work describes the approach as a <strong>Hybrid Support Vector Machines Rule-Based Detection</strong> method. In the accompanying notebook, the final decision combines an <strong>Support Vector Machine (SVM)</strong>, a lightweight <strong>statistical anomaly detection </strong>, and a <strong>rule-based detector</strong> through majority voting.
 
 The repository also implements several comparison models, performs preprocessing and feature engineering, exports manuscript-style comparison tables, and produces figures for detection accuracy, detection speed, resource utilization, false-positive rate, transfer-learning efficiency, latency, and scalability.
 
@@ -257,9 +257,9 @@ engineered IoT feature vector
      Threat / Non-Threat
 ```
 
-### Component B: statistical deviation detector
+### Component B:  statistical anomaly detection
 
-The final hybrid voting code uses a compact statistical detector based on each test sample's mean feature value:
+The final hybrid voting code uses a compact statistical detecting based on each test sample's mean feature value:
 
 ```python
 train_mean = X_train.mean()
