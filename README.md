@@ -21,7 +21,7 @@
 
 The rapid growth of the <strong>Internet of Things (IoT)</strong> has created highly heterogeneous networks containing sensors, embedded devices, gateways, controllers, and cyber-physical systems. These environments are difficult to secure because devices differ in capability, network behavior changes over time, computational resources are limited, and both known and previously unseen attack patterns may appear.
 
-<strong>HSVMR-D</strong> is a hybrid cyber-threat detection framework designed to combine complementary detection strategies instead of relying on a single classifier. The published work describes the approach as a <strong>Hybrid Support Vector Machines Rule-Based Detection</strong> method. In the accompanying notebook, the final decision combines an <strong>Support Vector Machine (SVM)</strong>, a lightweight <strong>statistical anomaly detection </strong>, and a <strong>rule-based detector</strong> through majority voting.
+<strong>HSVMR-D</strong> is a hybrid cyber-threat detection framework designed to combine complementary detection strategies instead of relying on a single classifier. The published work describes the approach as a <strong>Hybrid Support Vector Machines Rule-Based Detection</strong> method. In the accompanying notebook, the final decision combines an <strong>Support Vector Machine (SVM)</strong>, a lightweight <strong>statistical anomaly detection </strong>, and a <strong>rule-based detection</strong> through majority voting.
 
 The repository also implements several comparison models, performs preprocessing and feature engineering, exports manuscript-style comparison tables, and produces figures for detection accuracy, detection speed, resource utilization, false-positive rate, transfer-learning efficiency, latency, and scalability.
 
@@ -106,7 +106,7 @@ Stratified train/test split
         +--------------------+--------------------+
         |                    |                    |
         v                    v                    v
- SVM detector     Statistical detector    Rule-based detector
+ SVM detection     Statistical detection    Rule-based detection
   learned pattern       deviation signal       interpretable rules
         |                    |                    |
         +--------------------+--------------------+
@@ -298,7 +298,7 @@ stat_output = np.where(stat_score > threshold, 1, 0)
 
 In the current notebook, `stat_output` is calculated but is **not** used in the final HSVMR-D majority vote; the final hybrid uses `ST_prediction`.
 
-### Component C: rule-based detector
+### Component C: rule-based detection
 
 The rule engine evaluates three distribution-oriented conditions for every observation:
 
@@ -335,7 +335,7 @@ A sample receives a rule-based threat vote when at least two conditions are sati
 
 ## Hybrid Decision Rule
 
-The proposed notebook implementation fuses the three detector outputs using majority voting:
+The proposed notebook implementation fuses the three detection outputs using majority voting:
 
 ```python
 HSVMR_prediction = []
@@ -366,7 +366,7 @@ where:
 0 = Non-Threat
 ```
 
-This means the final output does not depend on a single detector. At least two detection components must agree before the sample is marked as a threat.
+This means the final output does not depend on a single detection. At least two detection components must agree before the sample is marked as a threat.
 
 ---
 
@@ -401,7 +401,7 @@ These features augment the raw measurements with simple distribution and magnitu
 
 ### 4) Learned classification layer
 
-The primary learned detector is an  SVM. The repository also implements additional machine-learning baselines for comparison.
+The primary learned detection is an  SVM. The repository also implements additional machine-learning baselines for comparison.
 
 ### 5) Statistical/anomaly layer
 
@@ -432,7 +432,7 @@ The notebook uses the following labels in its experiment code and figures:
 | `DLM` | `MLPClassifier(hidden_layer_sizes=(64, 32))` | Feed-forward neural-network comparison model |
 | `NA-IDM` | `IsolationForest(contamination='auto')` | Unsupervised anomaly-detection comparison |
 | `S&T-SA` / `ST_prediction` | Mean-deviation statistical rule in the notebook | Statistical/time-series-oriented comparison signal |
-| `HSVMR-D` | Majority vote of SVM + statistical detector + rule engine | Proposed hybrid notebook implementation |
+| `HSVMR-D` | Majority vote of SVM + statistical detection + rule engine | Proposed hybrid notebook implementation |
 
 <div align="justify">
 
@@ -907,7 +907,7 @@ For a larger research or production version, the current notebook can be reorgan
 │   └── hsvmrd/
 │       ├── preprocessing.py
 │       ├── features.py
-│       ├── detectors.py
+│       ├── detection.py
 │       ├── rules.py
 │       ├── fusion.py
 │       └── evaluation.py
@@ -943,7 +943,7 @@ This is only a recommended extension; the repository currently uses the simpler 
 
 ## Research Interpretation
 
-The repository can be understood as a three-evidence threat detector:
+The repository can be understood as a three-evidence threat detection:
 
 ```text
 SVM evidence
@@ -982,7 +982,7 @@ Paper concept                     Repository implementation
 IoT data preprocessing         -> duplicate/missing handling + RobustScaler
 Feature extraction             -> six row-wise engineered features
 SVM threat detection           ->  SVC
-Statistical analysis           -> deviation-based binary detectors
+Statistical analysis           -> deviation-based binary detection
 Rule-based detection           -> three-condition score rule
 Hybrid threat decision         -> 2-of-3 majority vote
 Baseline comparison            -> SVC / RF / MLP / Isolation Forest / statistical rule
